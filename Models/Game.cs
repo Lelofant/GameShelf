@@ -20,8 +20,7 @@ namespace GameShelf.Models
         [MaxLength(100)]
         public string? Publisher { get; set; }
 
-        [Required]
-        [DataType(DataType.Date)]
+        [Required] 
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public DateTime ReleaseDate { get; set; }
 
@@ -49,9 +48,6 @@ namespace GameShelf.Models
         [Required]
         public int GenreId { get; set; }
 
-        public DateTime CreatedDate { get; set; } = DateTime.Now;
-
-        public DateTime UpdatedDate { get; set; } = DateTime.Now;
 
         public Platform? Platform { get; set; }
         public Genre? Genre { get; set; }   
