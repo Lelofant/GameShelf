@@ -14,5 +14,7 @@ namespace GameShelf.Models
         [MaxLength(500)]
         public string? Description { get; set; }
 
+        public ICollection<Game>? Games { get; set; }
+
     }
 }
