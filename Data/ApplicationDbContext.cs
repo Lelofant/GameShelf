@@ -58,10 +58,6 @@ namespace GameShelf.Data
 
                 entity.Property(g => g.PurchaseDate).HasColumnType("date");
 
-                entity.HasKey(g => g.PlatformId);
-
-                entity.HasKey(g => g.GenreId);
-
                 entity.HasOne(g => g.Platform)
                     .WithMany(p => p.Games)
                     .HasForeignKey(g => g.PlatformId)
@@ -107,7 +103,7 @@ namespace GameShelf.Data
                     IsCompleted = true,
                     PurchaseDate = new DateTime(2023, 6, 15),
                     PlatformId = 1,
-                    GenreId = 2, 
+                    GenreId = 2,
                 },
                 new Game
                 {
@@ -122,7 +118,7 @@ namespace GameShelf.Data
                     IsCompleted = false,
                     PurchaseDate = new DateTime(2023, 12, 25),
                     PlatformId = 2,
-                    GenreId = 1, 
+                    GenreId = 1,
                 },
                 new Game
                 {
@@ -136,7 +132,7 @@ namespace GameShelf.Data
                     Description = "Master Chief returns in this epic sci-fi shooter",
                     IsCompleted = false,
                     PlatformId = 3,
-                    GenreId = 1,   
+                    GenreId = 1,
                 },
                 new Game
                 {
@@ -151,7 +147,7 @@ namespace GameShelf.Data
                     IsCompleted = true,
                     PurchaseDate = new DateTime(2023, 8, 10),
                     PlatformId = 4,
-                    GenreId = 5,   
+                    GenreId = 5,
                 }
             );
         }
