@@ -21,6 +21,7 @@ namespace GameShelf.Data
 
             entity.Entity<Platform>(entity =>
             {
+                entity.ToTable("Platforms");
                 entity.HasKey(p => p.Id);
                 entity.HasIndex(p => p.Name).IsUnique();
                 entity.Property(p => p.Name).IsRequired().HasMaxLength(100);
@@ -30,6 +31,7 @@ namespace GameShelf.Data
 
             entity.Entity<Genre>(entity =>
             {
+                entity.ToTable("Genres");
                 entity.HasKey(g => g.Id);
                 entity.HasIndex(g => g.Name).IsUnique();
                 entity.Property(g => g.Name).IsRequired().HasMaxLength(100);
@@ -38,6 +40,7 @@ namespace GameShelf.Data
 
             entity.Entity<Game>(entity =>
             {
+                entity.ToTable("Games");
                 entity.HasKey(g => g.Id);
 
                 entity.Property(g => g.Title).IsRequired().HasMaxLength(200);
