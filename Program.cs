@@ -1,5 +1,5 @@
 using Microsoft.EntityFrameworkCore;
-    using GameShelf.Data;
+using GameShelf.Data;
 
 var builder = WebApplication.CreateBuilder(args);
 

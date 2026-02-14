@@ -29,7 +29,7 @@ namespace GameShelf.Models
         [Column(TypeName = "decimal(18, 2)")]
         public decimal Price { get; set; }
 
-        [Range(1, 6)]
+        [Range(1, 10)]
         public int? Rating { get; set; }
 
         [StringLength(1000)]
