@@ -1,0 +1,62 @@
+﻿@model GameShelf.Models.Genre
+
+@{
+    ViewData["Title"] = "Genre Details";
+}
+
+<div class="row">
+    <div class="col-md-8 offset-md-2">
+        <h1>@Model.Name</h1>
+        <hr />
+
+        <div class="card">
+            <div class="card-header bg-warning text-dark">
+                <h4>Genre Information</h4>
+            </div>
+            <div class="card-body">
+                <dl class="row">
+                    <dt class="col-sm-3">Name:</dt>
+                    <dd class="col-sm-9">@Model.Name</dd>
+
+                    @if (!string.IsNullOrEmpty(Model.Description))
+                    {
+                        <dt class="col-sm-3">Description:</dt>
+                        <dd class="col-sm-9">@Model.Description</dd>
+                    }
+
+                    <dt class="col-sm-3">Total Games:</dt>
+                    <dd class="col-sm-9">
+                        <span class="badge bg-primary">@(Model.Games?.Count ?? 0) Games</span>
+                    </dd>
+                </dl>
+
+                @if (Model.Games != null && Model.Games.Any())
+                {
+                    <div class="mt-4">
+                        <h5>Games in this Genre</h5>
+                        <ul class="list-group">
+                            @foreach (var game in Model.Games)
+                            {
+                                <li class="list-group-item d-flex justify-content-between align-items-center">
+                                    <div>
+                                        <strong>@game.Title</strong>
+                                        <br />
+                                        <small class="text-muted">@game.Developer</small>
+                                    </div>
+                                    <a asp-controller="Games" asp-action="Details" asp-route-id="@game.Id" class="btn btn-sm btn-outline-primary">
+                                        View
+                                    </a>
+                                </li>
+                            }
+                        </ul>
+                    </div>
+                }
+            </div>
+            <div class="card-footer">
+                <a asp-action="Index" class="btn btn-secondary">
+                    Back to Genres
+                </a>
+            </div>
+        </div>
+    </div>
+</div>

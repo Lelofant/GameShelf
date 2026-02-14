@@ -1,0 +1,57 @@
+﻿@model IEnumerable<GameShelf.Models.Platform>
+
+@{
+    ViewData["Title"] = "Platforms";
+}
+
+<div class="row mb-3">
+    <div class="col">
+        <h1>Gaming Platforms</h1>
+        <p>Manage your gaming platforms</p>
+    </div>
+    <div class="col text-end">
+        <a asp-action="Create" class="btn btn-primary btn-lg">
+            + Add New Platform
+        </a>
+    </div>
+</div>
+
+@if (Model != null && Model.Any())
+{
+    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+        @foreach (var platform in Model)
+        {
+            <div class="col">
+                <div class="card h-100">
+                    <div class="card-header bg-info text-white">
+                        <h5>@platform.Name</h5>
+                    </div>
+                    <div class="card-body">
+                        <p><strong>Manufacturer:</strong> @platform.Manufacturer</p>
+                        @if (!string.IsNullOrEmpty(platform.Description))
+                        {
+                            <p class="text-muted">@platform.Description</p>
+                        }
+                        <p class="mb-0">
+                            <span class="badge bg-primary">
+                                @(platform.Games?.Count ?? 0) Games
+                            </span>
+                        </p>
+                    </div>
+                    <div class="card-footer bg-transparent">
+                        <a asp-action="Details" asp-route-id="@platform.Id" class="btn btn-sm btn-info">
+                            View Details
+                        </a>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+}
+else
+{
+    <div class="alert alert-info">
+        <h4>No platforms added yet!</h4>
+        <p>Click the "Add New Platform" button to add your first gaming platform.</p>
+    </div>
+}

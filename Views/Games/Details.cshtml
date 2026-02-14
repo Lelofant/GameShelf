@@ -1,0 +1,93 @@
+﻿@model GameShelf.Models.Game
+
+@{
+    ViewData["Title"] = "Game Details";
+}
+
+<div class="row">
+    <div class="col-md-8 offset-md-2">
+        <h1>@Model.Title</h1>
+        <hr />
+
+        <div class="card">
+            <div class="card-header bg-dark text-white">
+                <h4>Game Information</h4>
+            </div>
+            <div class="card-body">
+                <div class="row mb-3">
+                    <div class="col-md-6">
+                        <dl class="row">
+                            <dt class="col-sm-4">Developer:</dt>
+                            <dd class="col-sm-8">@Model.Developer</dd>
+
+                            @if (!string.IsNullOrEmpty(Model.Publisher))
+                            {
+                                <dt class="col-sm-4">Publisher:</dt>
+                                <dd class="col-sm-8">@Model.Publisher</dd>
+                            }
+
+                            <dt class="col-sm-4">Platform:</dt>
+                            <dd class="col-sm-8">
+                                <span class="badge bg-info">@Model.Platform?.Name</span>
+                            </dd>
+
+                            <dt class="col-sm-4">Genre:</dt>
+                            <dd class="col-sm-8">
+                                <span class="badge bg-warning text-dark">@Model.Genre?.Name</span>
+                            </dd>
+                        </dl>
+                    </div>
+
+                    <div class="col-md-6">
+                        <dl class="row">
+                            <dt class="col-sm-5">Release Date:</dt>
+                            <dd class="col-sm-7">@Model.ReleaseDate.ToString("MMMM dd, yyyy")</dd>
+
+                            <dt class="col-sm-5">Price:</dt>
+                            <dd class="col-sm-7">@Model.Price.ToString("C")</dd>
+
+                            @if (Model.Rating.HasValue)
+                            {
+                                <dt class="col-sm-5">Rating:</dt>
+                                <dd class="col-sm-7">
+                                    <span class="badge bg-success">⭐ @Model.Rating/10</span>
+                                </dd>
+                            }
+
+                            @if (Model.PurchaseDate.HasValue)
+                            {
+                                <dt class="col-sm-5">Purchase Date:</dt>
+                                <dd class="col-sm-7">@Model.PurchaseDate.Value.ToString("MMMM dd, yyyy")</dd>
+                            }
+
+                            <dt class="col-sm-5">Status:</dt>
+                            <dd class="col-sm-7">
+                                @if (Model.IsCompleted)
+                                {
+                                    <span class="badge bg-success">✓ Completed</span>
+                                }
+                                else
+                                {
+                                    <span class="badge bg-secondary">In Progress</span>
+                                }
+                            </dd>
+                        </dl>
+                    </div>
+                </div>
+            </div>
+            <div class="card-footer">
+                <div class="btn-group" role="group">
+                    <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-warning">
+                        Edit
+                    </a>
+                    <a asp-action="Delete" asp-route-id="@Model.Id" class="btn btn-danger">
+                        Delete
+                    </a>
+                    <a asp-action="Index" class="btn btn-secondary">
+                        Back to List
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

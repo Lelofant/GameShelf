@@ -1,0 +1,90 @@
+﻿@model GameShelf.Models.Game
+
+@{
+    ViewData["Title"] = "Delete Game";
+}
+
+<div class="row">
+    <div class="col-md-8 offset-md-2">
+        <h1 class="text-danger">Delete Game</h1>
+        <hr />
+
+        <div class="alert alert-warning">
+            <h4>Are you sure you want to delete this game?</h4>
+            <p>This action cannot be undone.</p>
+        </div>
+
+        <div class="card">
+            <div class="card-header bg-danger text-white">
+                <h4>@Model.Title</h4>
+            </div>
+            <div class="card-body">
+                <dl class="row">
+                    <dt class="col-sm-3">Developer:</dt>
+                    <dd class="col-sm-9">@Model.Developer</dd>
+
+                    @if (!string.IsNullOrEmpty(Model.Publisher))
+                    {
+                        <dt class="col-sm-3">Publisher:</dt>
+                        <dd class="col-sm-9">@Model.Publisher</dd>
+                    }
+
+                    <dt class="col-sm-3">Platform:</dt>
+                    <dd class="col-sm-9">
+                        <span class="badge bg-info">@Model.Platform?.Name</span>
+                    </dd>
+
+                    <dt class="col-sm-3">Genre:</dt>
+                    <dd class="col-sm-9">
+                        <span class="badge bg-warning text-dark">@Model.Genre?.Name</span>
+                    </dd>
+
+                    <dt class="col-sm-3">Release Date:</dt>
+                    <dd class="col-sm-9">@Model.ReleaseDate.ToString("MMMM dd, yyyy")</dd>
+
+                    <dt class="col-sm-3">Price:</dt>
+                    <dd class="col-sm-9">@Model.Price.ToString("C")</dd>
+
+                    @if (Model.Rating.HasValue)
+                    {
+                        <dt class="col-sm-3">Rating:</dt>
+                        <dd class="col-sm-9">
+                            <span class="badge bg-success">⭐ @Model.Rating/10</span>
+                        </dd>
+                    }
+
+                    <dt class="col-sm-3">Status:</dt>
+                    <dd class="col-sm-9">
+                        @if (Model.IsCompleted)
+                        {
+                            <span class="badge bg-success">✓ Completed</span>
+                        }
+                        else
+                        {
+                            <span class="badge bg-secondary">In Progress</span>
+                        }
+                    </dd>
+                </dl>
+
+                @if (!string.IsNullOrEmpty(Model.Description))
+                {
+                    <div class="mt-3">
+                        <h5>Description</h5>
+                        <p class="text-muted">@Model.Description</p>
+                    </div>
+                }
+            </div>
+            <div class="card-footer">
+                <form asp-action="Delete" method="post">
+                    <input type="hidden" asp-for="Id" />
+                    <button type="submit" class="btn btn-danger btn-lg">
+                        Confirm Delete
+                    </button>
+                    <a asp-action="Index" class="btn btn-secondary btn-lg">
+                        Cancel
+                    </a>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
